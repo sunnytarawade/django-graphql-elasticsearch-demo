@@ -17,8 +17,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from home.views import *
 
 urlpatterns = [
+    path('' , index),
     path('admin/', admin.site.urls),
-    path('ping/',views.ping)
+    path('ping/',views.ping),
+    path('search/' , PublisherDocumentView.as_view({'get': 'list'})),
+    path('search-with-es/',views.search_with_es)
 ]
