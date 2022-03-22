@@ -41,12 +41,18 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_elasticsearch_dsl',
     'django_elasticsearch_dsl_drf',
+    'ingredients',
+    'graphene_django'
 ]
 
 ELASTICSEARCH_DSL = {
     'default': {
         'hosts': 'localhost:9200'
     },
+}
+
+GRAPHENE = {
+    "SCHEMA": "api.schema.schema"
 }
 
 MIDDLEWARE = [

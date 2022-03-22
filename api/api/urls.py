@@ -19,10 +19,15 @@ from django.contrib import admin
 from django.urls import path
 from home.views import *
 
+from django.views.decorators.csrf import csrf_exempt
+from graphene_django.views import GraphQLView
+
 urlpatterns = [
     path('' , index),
     path('admin/', admin.site.urls),
     path('ping/',views.ping),
     path('search/' , PublisherDocumentView.as_view({'get': 'list'})),
-    path('search-with-es/',views.search_with_es)
+    path('search-with-es/',views.search_with_es),
+    path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True))),
+
 ]
