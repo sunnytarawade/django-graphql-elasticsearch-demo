@@ -37,12 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'home',
     'rest_framework',
     'django_elasticsearch_dsl',
     'django_elasticsearch_dsl_drf',
-    'ingredients',
-    'graphene_django'
+    'graphene_django',
+    
 ]
 
 ELASTICSEARCH_DSL = {
