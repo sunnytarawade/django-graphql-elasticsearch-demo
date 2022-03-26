@@ -7,16 +7,14 @@ services:
       - 9300:9300
     environment:
       discovery.type: 'single-node'
-      networks:
-      - elastic
+  
   kibana:
     image: kibana:7.8.1
     volumes:
       - ./kibana.yml:/usr/share/kibana/config/kibana.yml
     ports:
       - 5601:5601
-    networks:
-      - elastic
+  
   api:
     build: ./api
     container_name: api_c
@@ -30,9 +28,3 @@ services:
       - ./api:/app
     depends_on:
       - es
-    networks:
-      - elastic
-
-networks:
-  elastic:
-    driver: bridge
