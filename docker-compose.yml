@@ -2,17 +2,12 @@ version: '3'
 services:
   es:
     image: elasticsearch:7.8.1
-    # volumes:
-    #   - ./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-    
     ports:
       - 9200:9200
       - 9300:9300
     environment:
       discovery.type: 'single-node'
-      # xpack.security.enabled: 'true'
-      # ELASTIC_PASSWORD: 'my_password'
-    networks:
+      networks:
       - elastic
   kibana:
     image: kibana:7.8.1
@@ -29,7 +24,6 @@ services:
     environment:
       - SECRET_KEY=${SECRET_KEY}
       - DEBUG=${DEBUG}
-    # command: python manage.py runserver localhost:8000
     ports:
         - 8000:8000
     volumes:
