@@ -1,6 +1,7 @@
 from graphene import ObjectType,String
 from elasticsearch import Elasticsearch
-es = Elasticsearch()
+
+es = Elasticsearch(hosts=[{"host": "es"}])
 
 def resolve_all(parent,info,index_name,**kwargs):
     # print(index_name)
