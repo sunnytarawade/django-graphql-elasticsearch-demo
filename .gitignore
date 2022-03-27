@@ -129,3 +129,5 @@ dmypy.json
 .pyre/
 
 django-graphql-elasticsearch-demo
+django-graphql-elasticsearch-demo.pem
+ssh_commands

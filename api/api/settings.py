@@ -48,7 +48,7 @@ INSTALLED_APPS = [
 
 ELASTICSEARCH_DSL = {
     'default': {
-        'hosts': 'es:9200'
+        'hosts': f'{config("NODE",default="localhost")}:{config("PORT",default="9200")}'
     },
 }
 

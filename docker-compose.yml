@@ -2,12 +2,16 @@ version: '3'
 services:
   es:
     image: elasticsearch:7.8.1
+    volumes:
+      - ./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    
     ports:
       - 9200:9200
       - 9300:9300
     environment:
+      ES_JAVA_OPTS: '-Xmx256m -Xms256m'
       discovery.type: 'single-node'
-  
+      
   kibana:
     image: kibana:7.8.1
     volumes:

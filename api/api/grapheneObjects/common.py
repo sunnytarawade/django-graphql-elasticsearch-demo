@@ -1,8 +1,8 @@
 from graphene import ObjectType,String
 from elasticsearch import Elasticsearch
+from decouple import config
 
-es = Elasticsearch(hosts=[{"host": "es"}])
-
+es = Elasticsearch(hosts=[{"host":config("NODE",default="localhost")}])
 def resolve_all(parent,info,index_name,**kwargs):
     # print(index_name)
     res = [x['_source'] for x in es.search(index = index_name,filter_path = ['hits.hits._source'],body = {
