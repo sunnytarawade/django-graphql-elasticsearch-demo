@@ -1,0 +1,34 @@
+version: '3'
+services:
+  es:
+    image: elasticsearch:7.8.1
+    volumes:
+      - ./elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      ES_JAVA_OPTS: '-Xmx256m -Xms256m'
+      discovery.type: 'single-node'
+      
+  kibana:
+    image: kibana:7.8.1
+    volumes:
+      - ./kibana.yml:/usr/share/kibana/config/kibana.yml
+    ports:
+      - 5601:5601
+  
+  api:
+    build: ./api
+    container_name: api_c
+    restart: unless-stopped
+    environment:
+      - SECRET_KEY=${SECRET_KEY}
+      - DEBUG=${DEBUG}
+    ports:
+        - 8000:8000
+    volumes:
+      - ./api:/app
+    depends_on:
+      - es
